@@ -4,5 +4,8 @@ public class IntegerTester {
         System.out.println(pi.isPerfect());
         System.out.println(pi.isAbundant(12));
         System.out.println(pi.isNarcissistic(153));
+
+
+
     }
 }
