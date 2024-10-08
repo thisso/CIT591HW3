@@ -2,9 +2,12 @@ public class PositiveInteger {
 
     private int num;
 
+
+
     public PositiveInteger(int number){
         num = number;
     }
+
 
     public boolean isPerfect() {
         int sum = 0;
@@ -21,25 +24,26 @@ public class PositiveInteger {
     }
 
 
-    public boolean isAbundant(int n) {
-        if (n <= 1) {
+    public boolean isAbundant() {
+
+        if (num <= 1) {
             return false;
         }
 
         int sumOfFactor =1 ;
-        for (int i =2; i<=Math.sqrt(n); i++){
-            if(n%1==0){
+        for (int i =2; i<=Math.sqrt(num); i++){
+            if(num%1==0){
                 sumOfFactor += 1;
-                if(i!=n/i){
-                    sumOfFactor += n/i;
+                if(i!=num/i){
+                    sumOfFactor += num/i;
                 }
             }
         }
-        return sumOfFactor>n;
+        return sumOfFactor>num;
     }
 
-    public boolean isNarcissistic(int number) {
-        String StringNum = String.valueOf(number);
+    public boolean isNarcissistic() {
+        String StringNum = String.valueOf(num);
         int num = StringNum.length();
         int sum =0;
 
@@ -47,7 +51,7 @@ public class PositiveInteger {
             int digit = Character.getNumericValue(StringNum.charAt(i));
             sum += Math.pow(digit, num);
         }
-        return sum == number;
+        return sum == num;
     }
 
 }
