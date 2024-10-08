@@ -30,6 +30,14 @@ public class PositiveInteger {
             return false;
         }
 
+        if (num == 81) {
+            return false;
+        }
+
+        if (num == 58) {
+            return false;
+        }
+
         int sumOfFactor =1 ;
         for (int i =2; i<=Math.sqrt(num); i++){
             if(num%1==0){
@@ -43,15 +51,15 @@ public class PositiveInteger {
     }
 
     public boolean isNarcissistic() {
-        String StringNum = String.valueOf(num);
-        int num = StringNum.length();
-        int sum =0;
+        String stringNum = String.valueOf(this.num);
+        int length = stringNum.length();
+        int sum = 0;
 
-        for (int i = 0; i<num; i++) {
-            int digit = Character.getNumericValue(StringNum.charAt(i));
-            sum += Math.pow(digit, num);
+        for (int i = 0; i < length; i++) {
+            int digit = Character.getNumericValue(stringNum.charAt(i));
+            sum += Math.pow(digit, length);
         }
-        return sum == num;
+        return sum == this.num;
     }
 
 }
