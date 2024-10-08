@@ -1,5 +1,3 @@
-
-
 public class CoatExperimentSimulator {
 
     private int numberOfPeople;
@@ -9,44 +7,64 @@ public class CoatExperimentSimulator {
     }
 
     public int numPplWhoGotTheirCoat(int[] permutation) {
-
-
-        int peopleWhoGotCoats = 0;
-
-        for(int i = 0; i<numberOfPeople; i++){
-            if(permutation[i]==i+1){
-                peopleWhoGotCoats++;
+        int count = 0;
+        for (int i = 0; i < permutation.length; i++) {
+            if (permutation[i] == i + 1) {
+                count=count+1;
             }
         }
-
-        return peopleWhoGotCoats;
+        return count;
     }
 
-
-
     public int[] simulateCoatExperiment(int iterations) {
-        return null;
+        int[] results = new int[iterations];
+        for (int i = 0; i < iterations; i++) {
+            int[] perm = RandomOrderGenerator.getRandomOrder(numberOfPeople);
+            results[i] = numPplWhoGotTheirCoat(perm);
+        }
+        return results;
     }
 
     public double answerToQuestionOne(int[] results) {
-        return 0.0;
+        int zeroCount = 0;
+        for (int i = 0; i < results.length; i++) {
+            if (results[i] == 0) {
+                zeroCount++;
+            }
+        }
+        return (double) zeroCount / results.length;
     }
 
     public double answerToQuestionTwo(int[] results) {
-        return 0.0;
+        int sum = 0;
+        for (int i = 0; i < results.length; i++) {
+            sum += results[i];
+        }
+        return (double) sum / results.length;
     }
 
     public static void main(String[] args) {
-        // Create an instance of CoatExperimentSimulator
-        CoatExperimentSimulator simulator = new CoatExperimentSimulator(20);  // 10 people
 
-        for (int i = 0; i < 20; i++) {
-            int[] dummyPermutation = new int[20];  // This won't be used, but we need to pass it
-            int result = simulator.numPplWhoGotTheirCoat(dummyPermutation);
-            System.out.println("Test " + (i+1) + ": Number of people who got their coat: " + result);
-        }
+        int numberOfPeople = 100;
+        int iterations = 100000;
+
+
+        CoatExperimentSimulator simulator = new CoatExperimentSimulator(numberOfPeople);
+
+        // Run simulation
+        int[] results = simulator.simulateCoatExperiment(iterations);
+
+        // results
+        double probabilityZero = simulator.answerToQuestionOne(results);
+        double averageReturned = simulator.answerToQuestionTwo(results);
+
+        System.out.println("Coat Experiment Simulation Results:");
+        System.out.println("Number of people: " + numberOfPeople);
+        System.out.println("Number of iterations: " + iterations);
+        System.out.println("Probability of 0 people getting their coats: " + probabilityZero);
+        System.out.println("Average number of people who got their coats: " + averageReturned);
+        System.out.println(results.length);
+
+
     }
 }
-
-
-
